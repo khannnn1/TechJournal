@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>TechJournal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<nav id="lateral" aria-label="Edições anteriores">
+  <h2>Edições anteriores</h2>
+  <ol id="lista-edicoes"></ol>
+</nav>
+
+<div id="principal">
+  <header class="cabecalho">
+    <div class="topo-fino">
+      <span>Fundado em 2026</span>
+      <div class="filete-orn" aria-hidden="true">
+        <span class="duplo"></span>
+        <svg class="ornamento menor" viewBox="0 0 120 20" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <path d="M2 10H38M82 10H118"/>
+            <path d="M38 10C46 2 54 2 60 10C66 18 74 18 82 10"/>
+            <path d="M38 10C46 18 54 18 60 10C66 2 74 2 82 10"/>
+            <path d="M12 7H30M90 7H108" stroke-width=".6"/>
+            <path d="M12 13H30M90 13H108" stroke-width=".6"/>
+          </g>
+          <path d="M60 3L66 10L60 17L54 10Z" fill="currentColor"/>
+          <circle cx="34" cy="10" r="1.8" fill="currentColor"/>
+          <circle cx="86" cy="10" r="1.8" fill="currentColor"/>
+        </svg>
+        <span class="aviso">Resumos automatizados por IA. Confira sempre a fonte. Sem vínculo com os veículos citados.</span>
+        <svg class="ornamento menor" viewBox="0 0 120 20" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+            <path d="M2 10H38M82 10H118"/>
+            <path d="M38 10C46 2 54 2 60 10C66 18 74 18 82 10"/>
+            <path d="M38 10C46 18 54 18 60 10C66 2 74 2 82 10"/>
+            <path d="M12 7H30M90 7H108" stroke-width=".6"/>
+            <path d="M12 13H30M90 13H108" stroke-width=".6"/>
+          </g>
+          <path d="M60 3L66 10L60 17L54 10Z" fill="currentColor"/>
+          <circle cx="34" cy="10" r="1.8" fill="currentColor"/>
+          <circle cx="86" cy="10" r="1.8" fill="currentColor"/>
+        </svg>
+        <span class="duplo"></span>
+      </div>
+      <span>Edição do meio-dia</span>
+    </div>
+    <h1>TechJournal</h1>
+    <div class="faixa">
+      <div class="faixa-esq">
+        <button type="button" id="alternar" aria-expanded="true" aria-controls="lateral">Edições</button>
+        <span id="data-extenso"></span>
+      </div>
+      <span class="lema">Tudo que importa em tecnologia, todo dia.</span>
+      <span id="numero" class="faixa-dir"></span>
+    </div>
+  </header>
+  <main id="capa" aria-live="polite"></main>
+</div>
+
+<div id="fundo" hidden>
+  <article id="painel" role="dialog" aria-modal="true" aria-labelledby="painel-titulo">
+    <button type="button" id="fechar" aria-label="Fechar">Fechar ×</button>
+    <div id="painel-conteudo"></div>
+  </article>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
