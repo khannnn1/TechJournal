@@ -514,6 +514,7 @@
         if (sel) { t.appendChild(sel); }
         e.appendChild(t);
         e.appendChild(criar('p', 'fina clamp1', item.linhaFina));
+        e._texto = String(item.texto || '');
         comEtiqueta(e, item);
         marcarClicavel(e, item);
         col.appendChild(e);
@@ -575,6 +576,7 @@
       e.appendChild(criar('span', 'titulo', item.titulo));
       var sel = carimbo(item);
       if (sel) { e.appendChild(sel); }
+      e._fina = String(item.linhaFina || '');
       marcarClicavel(e, item);
       li.appendChild(e);
       ul.appendChild(li);
@@ -656,6 +658,136 @@
     var k = peso3.length;
     montarCapa(k);
     while (k > 0 && estoura('.colunas', '.coluna .noticia')) { k--; montarCapa(k); }
+    preencherCapa();
+  }
+
+  /* ---------- preenchimento da capa em edições enxutas ----------
+     Com poucas notícias sobra altura nas colunas e nos "Breves". Só nesse caso (espaço vazio nas colunas acima do limiar,
+     ou sobra clara no fim dos "Breves") a capa usa a sobra: 1) cada notícia das colunas mostra mais linhas do texto,
+     até o texto inteiro; 2) se ainda sobrar, o texto das colunas cresce até 15%; 3) os "Breves" ganham a linha fina.
+     A altura da capa nunca cresce: cada passo é desfeito se algo passar do limite do bloco. Edições cheias não mudam. */
+  var LIMIAR_VAZIO = 0.35;      /* fração das colunas vazia (entre as notícias) a partir da qual o texto é expandido */
+  var ESCALA_MAX = 1.15;        /* crescimento máximo do texto das colunas */
+  var SOBRA_BREVES = 48;        /* px livres no fim dos "Breves" a partir dos quais a linha fina aparece */
+
+  /* último filho que é conteúdo (o rótulo "peso N" do modo editor fica em posição absoluta e não conta) */
+  function ultimoConteudo(e) {
+    var f = e.lastElementChild;
+    while (f && f.classList.contains('etiqueta-peso')) { f = f.previousElementSibling; }
+    return f;
+  }
+
+  function fracaoVaziaColunas() {
+    var cont = capa.querySelector('.colunas');
+    if (!cont) { return 0; }
+    var total = 0;
+    var vazio = 0;
+    var cols = cont.querySelectorAll('.coluna');
+    for (var i = 0; i < cols.length; i++) {
+      total += cols[i].getBoundingClientRect().height;
+      var itens = cols[i].querySelectorAll('.noticia');
+      for (var j = 0; j < itens.length; j++) {
+        var ult = ultimoConteudo(itens[j]);
+        if (ult) { vazio += Math.max(0, itens[j].getBoundingClientRect().bottom - ult.getBoundingClientRect().bottom); }
+      }
+    }
+    return total ? vazio / total : 0;
+  }
+
+  /* todos os textos da coluna aparecem inteiros (sem reticências)? */
+  function colunaCompleta(col) {
+    var cs = col.querySelectorAll('.corpo-col');
+    for (var i = 0; i < cs.length; i++) {
+      if (cs[i].scrollHeight > cs[i].clientHeight + 1) { return false; }
+    }
+    return true;
+  }
+
+  function desfazerColuna(col) {
+    var cs = col.querySelectorAll('.corpo-col');
+    for (var i = 0; i < cs.length; i++) { cs[i].parentNode.removeChild(cs[i]); }
+    col.classList.remove('expandida');
+    col.style.removeProperty('--lc');
+  }
+
+  /* devolve true se o texto de todas as notícias da coluna passou a aparecer inteiro */
+  function expandirColuna(col) {
+    var itens = col.querySelectorAll('.noticia');
+    for (var i = 0; i < itens.length; i++) {
+      if (!itens[i]._texto) { continue; }
+      var fina = itens[i].querySelector('.fina');
+      var corpo = criar('p', 'corpo-col', itens[i]._texto);
+      if (fina && fina.nextSibling) { itens[i].insertBefore(corpo, fina.nextSibling); } else { itens[i].appendChild(corpo); }
+    }
+    col.classList.add('expandida');
+    col.style.setProperty('--lc', '2');
+    if (estoura('.colunas', '.coluna .noticia')) { desfazerColuna(col); return false; }
+    /* aumenta uma linha por vez; se estourar, volta uma; se o texto já aparece inteiro, para */
+    var n = 2;
+    while (!colunaCompleta(col) && n < 60) {
+      col.style.setProperty('--lc', String(n + 1));
+      if (estoura('.colunas', '.coluna .noticia')) { col.style.setProperty('--lc', String(n)); return false; }
+      n++;
+    }
+    col.style.setProperty('--lc', '99');
+    return true;
+  }
+
+  function preencherColunas() {
+    var cont = capa.querySelector('.colunas');
+    if (!cont || fracaoVaziaColunas() < LIMIAR_VAZIO) { return; }
+    var cols = cont.querySelectorAll('.coluna');
+    var todasCompletas = true;
+    for (var i = 0; i < cols.length; i++) {
+      if (!expandirColuna(cols[i])) { todasCompletas = false; }
+    }
+    /* se todos os textos já aparecem inteiros e ainda sobra espaço, o texto cresce um pouco (até 15%) */
+    if (todasCompletas && fracaoVaziaColunas() > 0.1) {
+      var escala = 1;
+      while (escala < ESCALA_MAX - 0.001) {
+        var prox = Math.min(ESCALA_MAX, escala + 0.03);
+        cont.style.setProperty('--escala', String(prox));
+        if (estoura('.colunas', '.coluna .noticia')) { cont.style.setProperty('--escala', String(escala)); break; }
+        escala = prox;
+      }
+      if (escala === 1) { cont.style.removeProperty('--escala'); }
+    }
+  }
+
+  function desfazerBreves(cont) {
+    var fs = cont.querySelectorAll('.fina-breve');
+    for (var i = 0; i < fs.length; i++) { fs[i].parentNode.removeChild(fs[i]); }
+    cont.classList.remove('expandidas');
+    cont.style.removeProperty('--lcb');
+  }
+
+  function preencherBreves() {
+    var cont = capa.querySelector('.breves');
+    if (!cont) { return; }
+    var lis = cont.querySelectorAll('li');
+    if (!lis.length) { return; }
+    var cs = getComputedStyle(cont);
+    var limite = cont.getBoundingClientRect().bottom - parseFloat(cs.borderBottomWidth) - parseFloat(cs.paddingBottom);
+    if (limite - lis[lis.length - 1].getBoundingClientRect().bottom < SOBRA_BREVES) { return; }
+    for (var i = 0; i < lis.length; i++) {
+      var e = lis[i].querySelector('.noticia');
+      if (!e || !e._fina) { continue; }
+      e.appendChild(criar('span', 'fina-breve', e._fina));
+    }
+    cont.classList.add('expandidas');
+    cont.style.setProperty('--lcb', '1');
+    if (estoura('.breves', 'li')) { desfazerBreves(cont); return; }
+    var n = 1;
+    while (n < 4) {
+      cont.style.setProperty('--lcb', String(n + 1));
+      if (estoura('.breves', 'li')) { cont.style.setProperty('--lcb', String(n)); break; }
+      n++;
+    }
+  }
+
+  function preencherCapa() {
+    preencherColunas();
+    preencherBreves();
   }
 
   /* o último item de um bloco passa do limite do bloco? (mede as caixas, não os carimbos girados) */
