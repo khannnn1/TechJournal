@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-02",
+    "numero": 5,
+    "manchete": "Nova onda de ataques derruba refrigeração em supermercados europeus"
+  },
+  {
     "data": "2026-11-01",
     "numero": 4,
     "manchete": "FBI atribui à Coreia do Norte o roubo de US$ 6,3 bilhões da Binance"
