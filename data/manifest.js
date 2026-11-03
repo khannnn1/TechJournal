@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-03",
+    "numero": 6,
+    "manchete": "Anthropic diz que pode estar perto de uma IA que se aprimora sozinha"
+  },
+  {
     "data": "2026-11-02",
     "numero": 5,
     "manchete": "Nova onda de ataques derruba refrigeração em supermercados europeus"
