@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-05",
+    "numero": 7,
+    "manchete": "OpenAI relata que o GPT-6 Astra rende menos em tarefas de pesquisa de segurança"
+  },
+  {
     "data": "2026-11-03",
     "numero": 6,
     "manchete": "Anthropic diz que pode estar perto de uma IA que se aprimora sozinha"
