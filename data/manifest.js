@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-06",
+    "numero": 8,
+    "manchete": "Ações das big techs despencam e Nasdaq tem a maior queda diária desde abril de 2025"
+  },
+  {
     "data": "2026-11-05",
     "numero": 7,
     "manchete": "OpenAI relata que o GPT-6 Astra rende menos em tarefas de pesquisa de segurança"
