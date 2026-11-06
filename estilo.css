@@ -560,6 +560,12 @@ body.recolhida #lateral { display: none; }
 }
 .alerta .etiqueta-peso { right: 6px; bottom: 5px; background: var(--texto-claro); color: var(--marrom); }
 .breves .etiqueta-peso { position: static; flex: none; }
+/* Breves que não cabem: compactação progressiva (classes postas pelo script só quando estoura) */
+.breves.breves-compactas h2 { font-size: 10.5px; margin-bottom: 1px; }
+.breves.breves-compactas li { font-size: 10.5px; line-height: 1.15; padding: 0; }
+.breves.breves-compactas .titulo { font-size: 10.5px; }
+.breves.breves-2col ul { display: block; column-count: 2; column-gap: 10px; column-rule: 1px dotted var(--tinta-suave); }
+.breves.breves-2col li { max-height: none; break-inside: avoid; }
 .editor-dados { margin-top: 8px; padding: 6px 8px; border: 1px dashed var(--tinta); background: rgba(29, 26, 21, 0.06); }
 .editor-dados .meta { margin: 0 0 2px; font-weight: bold; }
 .editor-dados .criterios { margin: 2px 0 0; padding-top: 0; border-top: 0; }

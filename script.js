@@ -658,6 +658,7 @@
     var k = peso3.length;
     montarCapa(k);
     while (k > 0 && estoura('.colunas', '.coluna .noticia')) { k--; montarCapa(k); }
+    compactarBreves();
     preencherCapa();
   }
 
@@ -761,9 +762,19 @@
     cont.style.removeProperty('--lcb');
   }
 
+  /* Breves que estouram: 1) compacta (fonte e espaçamento menores); 2) se ainda estourar, 2 colunas. Edições que cabem não mudam. */
+  function compactarBreves() {
+    var cont = capa.querySelector('.breves');
+    if (!cont || !estoura('.breves', 'li')) { return; }
+    cont.classList.add('breves-compactas');
+    if (!estoura('.breves', 'li')) { return; }
+    cont.classList.add('breves-2col');
+  }
+
   function preencherBreves() {
     var cont = capa.querySelector('.breves');
     if (!cont) { return; }
+    if (cont.classList.contains('breves-compactas')) { return; }
     var lis = cont.querySelectorAll('li');
     if (!lis.length) { return; }
     var cs = getComputedStyle(cont);
