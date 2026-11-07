@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-07",
+    "numero": 9,
+    "manchete": "Relatório da METR: modelos da Anthropic evoluem duas vezes mais rápido que há um ano"
+  },
+  {
     "data": "2026-11-06",
     "numero": 8,
     "manchete": "Ações das big techs despencam e Nasdaq tem a maior queda diária desde abril de 2025"
