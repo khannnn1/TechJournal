@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-08",
+    "numero": 10,
+    "manchete": "Esquema de deepfakes de executivos teria desviado ao menos US$ 129 milhões"
+  },
+  {
     "data": "2026-11-07",
     "numero": 9,
     "manchete": "Relatório da METR: modelos da Anthropic evoluem duas vezes mais rápido que há um ano"
