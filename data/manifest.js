@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-09",
+    "numero": 11,
+    "manchete": "Nvidia abre investigação independente sobre Jensen Huang"
+  },
+  {
     "data": "2026-11-08",
     "numero": 10,
     "manchete": "Esquema de deepfakes de executivos teria desviado ao menos US$ 129 milhões"
