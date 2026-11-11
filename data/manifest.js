@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-11",
+    "numero": 13,
+    "manchete": "Anthropic diz ter atingido um limiar de segurança do seu próprio regulamento"
+  },
+  {
     "data": "2026-11-10",
     "numero": 12,
     "manchete": "Patch Tuesday da Microsoft bate recorde de correções e traz zero-day no Outlook"
