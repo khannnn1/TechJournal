@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-10",
+    "numero": 12,
+    "manchete": "Patch Tuesday da Microsoft bate recorde de correções e traz zero-day no Outlook"
+  },
+  {
     "data": "2026-11-09",
     "numero": 11,
     "manchete": "Nvidia abre investigação independente sobre Jensen Huang"
