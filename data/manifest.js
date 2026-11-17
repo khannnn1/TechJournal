@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-17",
+    "numero": 14,
+    "manchete": "Ataque via Optimizely injeta malware em sites como Zoom, CNN, BBC e Salesforce"
+  },
+  {
     "data": "2026-11-11",
     "numero": 13,
     "manchete": "Anthropic diz ter atingido um limiar de segurança do seu próprio regulamento"
