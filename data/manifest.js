@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-18",
+    "numero": 15,
+    "manchete": "Java4Shell: falha crítica no OpenJDK permite execução remota de código sem autenticação"
+  },
+  {
     "data": "2026-11-17",
     "numero": 14,
     "manchete": "Ataque via Optimizely injeta malware em sites como Zoom, CNN, BBC e Salesforce"
