@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-19",
+    "numero": 16,
+    "manchete": "Duas falhas críticas no NGINX permitem execução remota de código"
+  },
+  {
     "data": "2026-11-18",
     "numero": 15,
     "manchete": "Java4Shell: falha crítica no OpenJDK permite execução remota de código sem autenticação"
