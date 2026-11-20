@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-20",
+    "numero": 17,
+    "manchete": "Califórnia intima a Nvidia por causa dos laços de Jensen Huang com a China"
+  },
+  {
     "data": "2026-11-19",
     "numero": 16,
     "manchete": "Duas falhas críticas no NGINX permitem execução remota de código"
