@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-21",
+    "numero": 18,
+    "manchete": "Nasdaq apaga os ganhos de 2026 e S&P 500 e Dow entram em correção"
+  },
+  {
     "data": "2026-11-20",
     "numero": 17,
     "manchete": "Califórnia intima a Nvidia por causa dos laços de Jensen Huang com a China"
