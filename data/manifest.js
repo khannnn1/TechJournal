@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-22",
+    "numero": 19,
+    "manchete": "OpenRouter retira três provedores após teste que expôs vazamento de prompts"
+  },
+  {
     "data": "2026-11-21",
     "numero": 18,
     "manchete": "Nasdaq apaga os ganhos de 2026 e S&P 500 e Dow entram em correção"
