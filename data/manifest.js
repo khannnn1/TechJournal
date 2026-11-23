@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-23",
+    "numero": 20,
+    "manchete": "Nvidia reconduz Jensen Huang ao comando e as ações disparam cerca de 30%"
+  },
+  {
     "data": "2026-11-22",
     "numero": 19,
     "manchete": "OpenRouter retira três provedores após teste que expôs vazamento de prompts"
