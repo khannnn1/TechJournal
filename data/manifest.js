@@ -1,6 +1,11 @@
 window.TJ = window.TJ || { edicoes: {} };
 window.TJ.manifest = [
   {
+    "data": "2026-11-24",
+    "numero": 21,
+    "manchete": "Agentes de IA de hackers acharam e exploraram uma falha inédita quase sem ajuda humana, diz a Amazon"
+  },
+  {
     "data": "2026-11-23",
     "numero": 20,
     "manchete": "Nvidia reconduz Jensen Huang ao comando e as ações disparam cerca de 30%"
